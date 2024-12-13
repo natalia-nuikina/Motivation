@@ -32,10 +32,10 @@ const id = ref('');
         <div class="organization">
           <div>Организация:</div>
           <a-select
+            class="select"
             v-model:value ="organization"
             mode="multiple"
-            style="width: 500px"
-            placeholder="Select a organization"
+            placeholder="Выберите организецию"
             :options="store.organizations"
             :filter-option="filterOptionInput"
             @change="store.updateList(organization, 'organization')"
@@ -45,10 +45,10 @@ const id = ref('');
         <div class="division">
           <div>Подразделение:</div>
           <a-select
+            class="select"
             v-model:value ="division"
             mode="multiple"
-            style="width: 500px"
-            placeholder="Select a division"
+            placeholder="Выберите подразделение"
             :options="store.divisions"
             :filter-option="filterOptionInput"
             @change="store.updateList(division, 'division')"
@@ -58,10 +58,10 @@ const id = ref('');
         <div class="fullName">
           <div>Физическое лицо:</div>
           <a-select
+            class="select"
             v-model:value ="fullName"
             mode="multiple"
-            style="width: 500px"
-            placeholder="Select a person"
+            placeholder="Выберите физическое лицо"
             :options="store.people"
             :filter-option="filterOptionInput"
             @change="store.updateList(fullName, 'fullName')"
@@ -71,10 +71,10 @@ const id = ref('');
         <div class="post">
           <div>Должность:</div>
           <a-select
+            class="select"
             v-model:value ="post"
             mode="multiple"
-            style="width: 500px"
-            placeholder="Select a post"
+            placeholder="Выберите должность"
             :options="store.posts"
             :filter-option="filterOptionInput"
             @change="store.updateList(post, 'post')"
@@ -84,10 +84,10 @@ const id = ref('');
         <div class="personnelNumber">
           <div>Табельный номер:</div>
           <a-select
+            class="select"
             v-model:value ="personnelNumber"
             mode="multiple"
-            style="width: 500px"
-            placeholder="Select a personnel number"
+            placeholder="Выберите табельный номер"
             :options="store.personnelNumbers"
             :filter-option="filterOptionInput"
             @change="store.updateList(personnelNumber, 'personnelNumber')"
@@ -119,7 +119,7 @@ const id = ref('');
             <td>{{ person.guid }}</td>
             <td>{{ person.post }}</td>
             <td>{{ person.personnelNumber }}</td>
-            <td>
+            <td class="kpi">
               {{ person.kpi }}
               <a-button @click="open = true, kpi = person.kpi, id = person.id">
                 <EditOutlined />
@@ -140,5 +140,32 @@ const id = ref('');
 </template>
 
 <style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+}
+/* .filters {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+} */
+table {
+  width: 100vw;
+}
 
+th {
+  text-align: start;
+}
+
+tbody tr:hover {
+  background-color: #CDE4FF;
+}
+
+.kpi {
+  display: flex;
+  align-items: center;
+}
+.select {
+  width: 300px;
+}
 </style>
