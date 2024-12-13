@@ -31,6 +31,16 @@ const store = reactive({
     return Object.keys(this.filters)
   },
 
+  changeKpi(id, newValue) {
+    this.staff = this.staff.map((item) => {
+      if (item.id === id) {
+        item.kpi = newValue;
+        return item;
+      }
+      return item;
+    });
+  },
+
   updateList(filterArr, marker) {
 
     this.filters[marker] = filterArr;

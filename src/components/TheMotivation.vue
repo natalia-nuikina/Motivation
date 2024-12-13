@@ -12,11 +12,14 @@ const filterOptionInput = (input, option) => {
   return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
 const open = ref(false);
-const handleOk = e => {
+const handleOk = (e) => {
   console.log(e);
+  store.changeKpi(id.value, kpi.value);
   open.value = false;
 };
-
+const kpi = ref('');
+const comment = ref('');
+const id = ref('');
 </script>
 
 <template>
@@ -118,7 +121,7 @@ const handleOk = e => {
             <td>{{ person.personnelNumber }}</td>
             <td>
               {{ person.kpi }}
-              <a-button @click="open = true">
+              <a-button @click="open = true, kpi = person.kpi, id = person.id">
                 <EditOutlined />
               </a-button>
             </td>
@@ -127,7 +130,10 @@ const handleOk = e => {
         </table>
       </div>
       <a-modal v-model:open="open" title="KPI" @ok="handleOk">
-        <div>Введите новое значение KPI</div>
+        <div>Введите новое значение KPI:</div>
+        <a-input v-model:value="kpi" placeholder="KPI" />
+        <div>Введите комментарий:</div>
+        <a-input v-model="comment" placeholder="Комментарий" />
       </a-modal>
     </main>
   </div>
