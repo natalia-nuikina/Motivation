@@ -23,7 +23,7 @@ const store = reactive({
     personnelNumber: [],
   },
   logInData: {
-    username: '',
+    login: '',
     password: '',
   },
 

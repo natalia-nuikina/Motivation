@@ -24,11 +24,11 @@
         @finishFailed="onFinishFailed"
       >
         <a-form-item
-          label="Имя пользователя"
-          name="username"
-          :rules="[{ required: true, message: 'Заполните имя пользователя' }]"
+          label="Логин"
+          name="login"
+          :rules="[{ required: true, message: 'Заполните логин' }]"
         >
-          <a-input v-model:value="store.logInData.username" />
+          <a-input v-model:value="store.logInData.login" />
         </a-form-item>
 
         <a-form-item
