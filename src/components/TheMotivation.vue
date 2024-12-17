@@ -184,4 +184,14 @@ header {
 .editable-cell-icon:hover {
     color: #108ee9;
   }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 </style>
