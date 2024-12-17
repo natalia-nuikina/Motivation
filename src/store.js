@@ -22,6 +22,10 @@ const store = reactive({
     fullName: [],
     personnelNumber: [],
   },
+  logInData: {
+    username: '',
+    password: '',
+  },
 
   getStaff() {
     return this.filteredStaff;

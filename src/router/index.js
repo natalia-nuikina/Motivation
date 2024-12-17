@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TheMotivation from '@/components/TheMotivation.vue'
+import LogIn from '@/components/LogIn.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +9,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: TheMotivation,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LogIn,
     },
     // {
     //   path: '/about',

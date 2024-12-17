@@ -2,26 +2,35 @@
 import store from '../store.js';
 import { EditOutlined } from '@ant-design/icons-vue';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const division = defineModel('division');
 const post = defineModel('post');
 const organization = defineModel('organization');
 const fullName = defineModel('fullName');
 const personnelNumber = defineModel('personnelNumber');
+const open = ref(false);
+const kpi = ref('');
+const comment = ref('');
+const id = ref('');
+
+
+const logOut = () => {
+  router.push('login');
+};
 
 const filterOptionInput = (input, option) => {
   return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
-const open = ref(false);
+
 const handleOk = (e) => {
   console.log(e);
   store.changeKpi(id.value, kpi.value);
   open.value = false;
+  //передать новое значение кпи и комментарий comment.value на сервер ? вместе с токеном
   console.log(kpi)
 };
-const kpi = ref('');
-const comment = ref('');
-const id = ref('');
 
 const columns = [
   {
@@ -58,7 +67,8 @@ const columns = [
 <template>
   <div class="wrapper">
     <header>
-      <h2>Управление мотивацией</h2>
+      <div class="title">Управление мотивацией</div>
+      <a-button type="primary" ghost @click="logOut" >Выйти</a-button>
     </header>
     <main>
       <div class="filters">
@@ -134,7 +144,7 @@ const columns = [
             <template v-if="column.dataIndex === 'kpi'">
               <div class="editable-cell">
                   {{ text || ' ' }}
-                  <EditOutlined @click="open = true, kpi = text, id = record.id" class="editable-cell-icon"/>
+                  <EditOutlined @click="open = true, kpi = text, comment = '', id = record.id" class="editable-cell-icon"/>
               </div>
             </template>
           </template>
@@ -144,14 +154,24 @@ const columns = [
         <div>Введите новое значение KPI:</div>
         <a-input v-model:value="kpi" placeholder="KPI" />
         <div>Введите комментарий:</div>
-        <a-input v-model="comment" placeholder="Комментарий" />
+        <a-input v-model:value="comment" placeholder="Комментарий" />
       </a-modal>
     </main>
   </div>
 </template>
 
 <style scoped>
-
+header {
+  background: rgb(227, 255, 229);
+  background: linear-gradient(270deg, rgb(227, 255, 229) 0%, rgb(215, 234, 255) 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+}
+.title {
+  font-size: 3vh;
+}
 .editable-cell {
   display: flex;
   align-items: center;
